@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hair Mafia | The House of Luxury Hair — Charlotte, NC</title>
+<meta name="description" content="The House of Hair Mafia — premium hair extensions, master installations, locs, silk press and natural-hair care in Charlotte, NC. Book your seat with celebrity-level stylist Trophy Santiaga.">
+
+<!-- ============================================================
+     HAIR MAFIA — "THE HOUSE" Editorial Rebuild
+     ────────────────────────────────────────────────────────────
+     Concept: a luxury fashion-magazine "house" — Love & Hip Hop
+     boldness meets couture sophistication. Reality-TV swagger in
+     the copy + a live ticker + confessional testimonials, all
+     wrapped in serif editorial layout, alternating black/cream
+     spreads, hairline rules and numbered chapters.
+
+     • 100% GoHighLevel-native: scoped vanilla CSS, no Tailwind CDN,
+       no React, no frameworks. All classes prefixed `hm-` and
+       wrapped in .hm-scope so GHL styles never collide.
+     • Single file. Fonts via @import. Motion via CSS keyframes.
+     • Media URLs reused from the original GHL media library.
+     ============================================================ -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,500;1,6..96,600&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+/* ============================== TOKENS ============================== */
+.hm-scope{
+  --hm-ink:#0B0B0C;          /* near-black editorial ink */
+  --hm-ink-2:#141416;
+  --hm-ink-3:#1c1c1f;
+  --hm-cream:#F4EEE6;        /* luxe paper */
+  --hm-cream-2:#EDE4D6;
+  --hm-paper:#F7F4EF;
+  --hm-pink:#F50079;         /* the loud accent */
+  --hm-pink-deep:#C90060;
+  --hm-pink-soft:#FF4FA6;
+  --hm-gold:#C8A24C;         /* champagne foil */
+  --hm-gold-2:#E7CC85;
+  --hm-paper-mute:rgba(244,238,230,.62);
+  --hm-ink-mute:rgba(11,11,12,.62);
+  --hm-line-d:rgba(244,238,230,.14);   /* hairline on dark */
+  --hm-line-l:rgba(11,11,12,.16);       /* hairline on light */
+
+  --hm-serif:'Bodoni Moda',Georgia,'Times New Roman',serif;
+  --hm-script:'Allura',cursive;
+  --hm-sans:'Manrope','Segoe UI',sans-serif;
+
+  --hm-max:1320px;
+  --hm-ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ============================== RESET (scoped) ============================== */
+.hm-scope *,.hm-scope *::before,.hm-scope *::after{box-sizing:border-box;margin:0;padding:0}
+.hm-scope{
+  background:var(--hm-ink);
+  color:var(--hm-cream);
+  font-family:var(--hm-sans);
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  position:relative;
+}
+html{scroll-behavior:smooth}
+.hm-scope img{display:block;max-width:100%}
+.hm-scope a{color:inherit;text-decoration:none}
+.hm-scope button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.hm-scope ::selection{background:var(--hm-pink);color:#fff}
+.hm-scope :focus-visible{outline:2px solid var(--hm-pink);outline-offset:3px;border-radius:4px}
+
+.hm-wrap{max-width:var(--hm-max);margin:0 auto;padding:0 32px;position:relative}
+.hm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ============================== TYPE SYSTEM ============================== */
+.hm-kicker{font-family:var(--hm-sans);font-weight:700;font-size:.7rem;letter-spacing:.32em;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;color:var(--hm-pink)}
+.hm-kicker::before{content:"";width:26px;height:1px;background:currentColor;display:inline-block}
+.hm-kicker.hm-center{justify-content:center}
+
+.hm-chapter{font-family:var(--hm-serif);font-style:italic;font-weight:500;
+  font-size:.95rem;letter-spacing:.04em;color:var(--hm-gold)}
+
+.hm-display{font-family:var(--hm-serif);font-weight:600;line-height:.92;letter-spacing:-.012em}
+.hm-h2{font-family:var(--hm-serif);font-weight:600;line-height:.98;letter-spacing:-.012em;
+  font-size:clamp(2.5rem,6vw,4.6rem)}
+.hm-h2 .hm-it{font-style:italic;font-weight:500}
+.hm-h2 .hm-script{font-family:var(--hm-script);font-weight:400;color:var(--hm-gold);
+  font-size:1.15em;display:inline-block;line-height:1;letter-spacing:0}
+.hm-h3{font-family:var(--hm-serif);font-weight:600;font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.08}
+.hm-lede{font-size:1.1rem;color:var(--hm-paper-mute);max-width:52ch;line-height:1.75;font-weight:400}
+.hm-body{font-size:.98rem;color:var(--hm-paper-mute);line-height:1.78}
+
+/* ============================== BUTTONS ============================== */
+.hm-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:11px;
+  padding:16px 30px;font-family:var(--hm-sans);font-weight:700;font-size:.74rem;
+  letter-spacing:.16em;text-transform:uppercase;transition:all .45s var(--hm-ease);
+  overflow:hidden;z-index:1;border-radius:2px}
+.hm-btn svg{width:15px;height:15px;transition:transform .45s var(--hm-ease)}
+.hm-btn:hover svg{transform:translateX(5px)}
+
+.hm-btn-pink{background:var(--hm-pink);color:#fff}
+.hm-btn-pink:hover{background:var(--hm-pink-deep);transform:translateY(-3px);
+  box-shadow:0 16px 34px -12px rgba(245,0,121,.6)}
+
+.hm-btn-gold{background:linear-gradient(120deg,var(--hm-gold-2),var(--hm-gold));color:#1a1408}
+.hm-btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 34px -12px rgba(200,162,76,.55)}
+
+.hm-btn-ink{background:var(--hm-ink);color:var(--hm-cream)}
+.hm-btn-ink:hover{background:#000;transform:translateY(-3px)}
+
+.hm-btn-ghost-d{border:1px solid var(--hm-line-d);color:var(--hm-cream)}
+.hm-btn-ghost-d:hover{background:var(--hm-cream);color:var(--hm-ink);border-color:var(--hm-cream)}
+
+.hm-btn-ghost-l{border:1px solid var(--hm-line-l);color:var(--hm-ink)}
+.hm-btn-ghost-l:hover{background:var(--hm-ink);color:var(--hm-cream);border-color:var(--hm-ink)}
+
+.hm-link{display:inline-flex;align-items:center;gap:12px;font-family:var(--hm-sans);
+  font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--hm-gold);transition:color .3s;white-space:nowrap}
+.hm-link::after{content:"";width:30px;height:1px;background:currentColor;transition:width .4s var(--hm-ease)}
+.hm-link:hover{color:var(--hm-cream)}
+.hm-link:hover::after{width:46px}
+
+/* ============================== TOP MASTHEAD BAR ============================== */
+.hm-top{background:var(--hm-ink);border-bottom:1px solid var(--hm-line-d);
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;position:relative;z-index:60}
+.hm-top-inner{max-width:var(--hm-max);margin:0 auto;padding:9px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px}
+.hm-top-side{color:var(--hm-paper-mute);font-weight:600;white-space:nowrap}
+.hm-top-side b{color:var(--hm-gold);font-weight:700}
+.hm-top-mid{color:var(--hm-cream);font-weight:700;text-align:center;display:flex;
+  align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.hm-top-mid i{color:var(--hm-pink);font-style:normal}
+@media(max-width:900px){.hm-top-side{display:none}.hm-top-inner{justify-content:center}}
+
+/* ============================== NAV ============================== */
+.hm-nav{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.82);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--hm-line-d);transition:padding .4s var(--hm-ease)}
+.hm-nav-inner{max-width:var(--hm-max);margin:0 auto;padding:0 32px;height:84px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;transition:height .4s var(--hm-ease)}
+.hm-nav.hm-stuck .hm-nav-inner{height:68px}
+.hm-logo{justify-self:start;display:flex;align-items:center}
+.hm-logo img{height:50px;width:auto;transition:height .4s var(--hm-ease)}
+.hm-nav.hm-stuck .hm-logo img{height:42px}
+
+.hm-nav-links{justify-self:center;display:flex;align-items:center;gap:30px}
+.hm-nav-links a{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,238,230,.8);position:relative;padding:8px 0;transition:color .3s}
+.hm-nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:var(--hm-pink);transition:width .35s var(--hm-ease)}
+.hm-nav-links a:hover{color:var(--hm-cream)}
+.hm-nav-links a:hover::after{width:100%}
+
+.hm-nav-actions{justify-self:end;display:flex;align-items:center;gap:18px}
+.hm-icon{color:rgba(244,238,230,.82);transition:.3s;position:relative;padding:6px;display:flex}
+.hm-icon:hover{color:var(--hm-pink);transform:scale(1.08)}
+.hm-icon svg{width:21px;height:21px}
+.hm-cart-badge{position:absolute;top:-1px;right:-1px;background:var(--hm-pink);color:#fff;
+  font-size:.54rem;font-weight:800;min-width:16px;height:16px;border-radius:9px;padding:0 3px;
+  display:flex;align-items:center;justify-content:center}
+.hm-nav-book{padding:11px 22px;font-size:.68rem}
+.hm-burger{display:none;flex-direction:column;gap:5px;padding:10px 6px;justify-self:end}
+.hm-burger span{display:block;width:26px;height:2px;background:var(--hm-cream);transition:.35s var(--hm-ease)}
+.hm-burger span:nth-child(3){width:17px;background:var(--hm-pink)}
+
+/* Mobile menu */
+.hm-mobile{position:fixed;inset:0;z-index:70;background:rgba(11,11,12,.97);
+  backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
+  display:flex;flex-direction:column;justify-content:center;padding:40px 32px;
+  clip-path:circle(0% at calc(100% - 44px) 44px);transition:clip-path .6s var(--hm-ease);
+  visibility:hidden}
+.hm-mobile.hm-open{clip-path:circle(150% at calc(100% - 44px) 44px);visibility:visible}
+.hm-mobile-close{position:absolute;top:28px;right:28px;color:var(--hm-cream);padding:8px;font-size:2rem;line-height:1}
+.hm-mobile nav{display:flex;flex-direction:column;gap:6px}
+.hm-mobile nav a{font-family:var(--hm-serif);font-size:2rem;font-weight:500;color:var(--hm-cream);
+  padding:8px 0;border-bottom:1px solid var(--hm-line-d);display:flex;align-items:baseline;gap:16px;transition:.3s}
+.hm-mobile nav a small{font-family:var(--hm-sans);font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--hm-pink)}
+.hm-mobile nav a:hover{color:var(--hm-gold);padding-left:10px}
+.hm-mobile .hm-btn{margin-top:28px;width:100%}
+
+/* ============================== HERO / COVER ============================== */
+.hm-hero{position:relative;overflow:hidden;background:var(--hm-ink);padding:60px 0 0}
+.hm-hero-glow{position:absolute;width:680px;height:680px;top:-18%;right:-8%;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,0,121,.34),transparent 66%);filter:blur(40px);
+  pointer-events:none;z-index:0;animation:hmPulse 9s ease-in-out infinite}
+.hm-hero-glow.hm-g2{top:auto;bottom:-22%;right:auto;left:-14%;
+  background:radial-gradient(circle,rgba(200,162,76,.26),transparent 66%);animation-delay:-3s}
+
+.hm-hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;
+  gap:30px;align-items:end}
+.hm-hero-l{padding:18px 0 84px}
+.hm-cover-meta{display:flex;align-items:center;gap:18px;padding-bottom:24px;margin-bottom:34px;
+  border-bottom:1px solid var(--hm-line-d);flex-wrap:wrap}
+.hm-cover-meta span{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--hm-paper-mute)}
+.hm-cover-meta b{color:var(--hm-gold)}
+.hm-cover-meta .hm-star{color:var(--hm-pink);letter-spacing:.1em}
+
+.hm-hero h1{font-family:var(--hm-serif);font-weight:700;font-size:clamp(3.4rem,9vw,7.4rem);
+  line-height:.86;letter-spacing:-.02em;margin-bottom:26px}
+.hm-hero h1 .hm-script{display:block;font-family:var(--hm-script);font-weight:400;
+  font-size:.52em;line-height:1;letter-spacing:0;margin:6px 0 -6px;
+  background:linear-gradient(92deg,var(--hm-pink),var(--hm-gold));-webkit-background-clip:text;
+  background-clip:text;-webkit-text-fill-color:transparent}
+.hm-hero h1 .hm-out{-webkit-text-fill-color:transparent;-webkit-text-stroke:1.5px var(--hm-cream);
+  color:transparent;font-style:italic;font-weight:500}
+.hm-hero-sub{font-size:1.12rem;color:var(--hm-paper-mute);max-width:34rem;line-height:1.7;margin-bottom:38px}
+.hm-hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.hm-hero-trust{display:flex;align-items:center;gap:14px;font-size:.8rem;color:var(--hm-paper-mute)}
+.hm-hero-trust .hm-faces{display:flex}
+.hm-hero-trust .hm-faces i{width:34px;height:34px;border-radius:50%;border:2px solid var(--hm-ink);
+  margin-left:-10px;background:var(--hm-ink-3);display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-style:normal;color:var(--hm-gold);font-weight:700}
+.hm-hero-trust .hm-faces i:first-child{margin-left:0}
+.hm-hero-trust b{color:var(--hm-cream);font-weight:700}
+
+.hm-hero-r{position:relative;align-self:end}
+.hm-cover-frame{position:relative;border-radius:6px 6px 0 0;overflow:hidden;
+  border:1px solid var(--hm-line-d);border-bottom:none;background:var(--hm-ink-2)}
+.hm-cover-frame img{width:100%;height:auto;display:block;
+  filter:contrast(1.04) saturate(1.02);animation:hmFloat 7s ease-in-out infinite}
+.hm-cover-frame::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(11,11,12,.55))}
+.hm-cover-tape{position:absolute;top:26px;left:-46px;transform:rotate(-90deg);transform-origin:left;
+  font-size:.62rem;font-weight:800;letter-spacing:.4em;text-transform:uppercase;color:var(--hm-paper-mute);z-index:3}
+.hm-cover-sticker{position:absolute;top:22px;right:22px;z-index:3;width:96px;height:96px;border-radius:50%;
+  background:var(--hm-pink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;transform:rotate(8deg);box-shadow:0 14px 30px -10px rgba(245,0,121,.6);
+  animation:hmSpinFloat 6s ease-in-out infinite}
+.hm-cover-sticker b{font-family:var(--hm-serif);font-size:1.5rem;line-height:1;font-weight:700}
+.hm-cover-sticker span{font-size:.5rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-top:3px}
+.hm-cover-line{position:absolute;left:22px;bottom:22px;right:22px;z-index:3}
+.hm-cover-line h4{font-family:var(--hm-serif);font-style:italic;font-weight:600;font-size:1.5rem;color:#fff;line-height:1}
+.hm-cover-line p{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-gold);
+  margin-top:6px;font-weight:700}
+
+/* ============================== TICKER ============================== */
+.hm-ticker{background:var(--hm-pink);color:#fff;overflow:hidden;position:relative;z-index:20;
+  display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.18)}
+.hm-ticker-tag{background:var(--hm-ink);color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.2em;
+  text-transform:uppercase;padding:13px 22px;white-space:nowrap;position:relative;z-index:2;flex-shrink:0}
+.hm-ticker-tag i{color:var(--hm-pink);font-style:normal}
+.hm-ticker-track{display:flex;white-space:nowrap;animation:hmScroll 34s linear infinite;
+  font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.hm-ticker-track span{margin:0 26px;padding:13px 0}
+.hm-ticker-track b{color:var(--hm-ink)}
+.hm-ticker-track em{font-style:normal;opacity:.55}
+
+/* ============================== SECTION SHELL ============================== */
+.hm-sec{padding:108px 0;position:relative;z-index:2}
+.hm-on-cream{background:var(--hm-cream);color:var(--hm-ink)}
+.hm-on-cream .hm-lede,.hm-on-cream .hm-body{color:var(--hm-ink-mute)}
+.hm-on-cream .hm-kicker{color:var(--hm-pink-deep)}
+.hm-on-cream .hm-chapter{color:var(--hm-gold)}
+.hm-on-ink-2{background:var(--hm-ink-2);border-top:1px solid var(--hm-line-d);border-bottom:1px solid var(--hm-line-d)}
+
+.hm-sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;
+  margin-bottom:60px;flex-wrap:wrap}
+.hm-sec-head-l{max-width:46rem}
+.hm-sec-head .hm-chapter{display:block;margin-bottom:16px}
+.hm-sec-head h2{margin-top:6px}
+
+/* ============================== THE LINEUP (services) ============================== */
+.hm-lineup{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--hm-line-l);border-radius:4px;overflow:hidden}
+.hm-svc{position:relative;padding:38px 34px 34px;border-right:1px solid var(--hm-line-l);
+  border-bottom:1px solid var(--hm-line-l);transition:background .4s var(--hm-ease);background:transparent}
+.hm-svc:hover{background:var(--hm-paper)}
+.hm-svc-no{font-family:var(--hm-serif);font-style:italic;font-size:1.05rem;color:var(--hm-gold)}
+.hm-svc h4{font-family:var(--hm-serif);font-weight:600;font-size:1.55rem;line-height:1.05;
+  margin:18px 0 12px}
+.hm-svc p{font-size:.92rem;color:var(--hm-ink-mute);line-height:1.65;margin-bottom:24px;min-height:64px}
+.hm-svc-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding-top:18px;border-top:1px solid var(--hm-line-l)}
+.hm-svc-price{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--hm-ink-mute);font-weight:600}
+.hm-svc-price b{font-family:var(--hm-serif);font-style:normal;font-size:1.4rem;color:var(--hm-ink);
+  display:block;letter-spacing:0;text-transform:none;margin-top:2px}
+.hm-svc-book{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--hm-pink-deep);transition:gap .3s}
+.hm-svc-book:hover{gap:13px}
+.hm-svc-book svg{width:14px;height:14px}
+.hm-lineup .hm-svc:nth-child(3n){border-right:none}
+.hm-lineup .hm-svc:nth-last-child(-n+3){border-bottom:none}
+
+/* ============================== SHOP COLLECTION ============================== */
+.hm-shop{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.hm-shop-card{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:3/4;
+  display:block;background:var(--hm-ink-2);border:1px solid var(--hm-line-d)}
+.hm-shop-card:nth-child(odd){margin-top:0}
+.hm-shop-card img{width:100%;height:100%;object-fit:cover;opacity:.78;
+  transition:opacity .7s var(--hm-ease),transform .9s var(--hm-ease)}
+.hm-shop-card:hover img{opacity:1;transform:scale(1.06)}
+.hm-shop-card::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(11,11,12,.92),rgba(11,11,12,.12) 52%,transparent)}
+.hm-shop-body{position:absolute;left:0;bottom:0;width:100%;padding:26px;z-index:2}
+.hm-shop-body small{font-size:.62rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--hm-gold)}
+.hm-shop-body h4{font-family:var(--hm-serif);font-weight:600;font-size:1.45rem;color:#fff;margin:8px 0 0;line-height:1.04}
+.hm-shop-go{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:.7rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,238,230,.8);
+  opacity:0;transform:translateY(8px);transition:.45s var(--hm-ease)}
+.hm-shop-card:hover .hm-shop-go{opacity:1;transform:none}
+.hm-shop-go svg{width:14px;height:14px}
+
+/* ============================== THE BOSS (founder) ============================== */
+.hm-boss{position:relative;overflow:hidden}
+.hm-boss-mark{position:absolute;left:-2%;top:-6%;font-family:var(--hm-serif);font-style:italic;
+  font-weight:700;font-size:clamp(8rem,22vw,20rem);color:rgba(11,11,12,.035);
+  pointer-events:none;user-select:none;line-height:1;z-index:0}
+.hm-boss-grid{position:relative;z-index:2;display:grid;grid-template-columns:.92fr 1.08fr;
+  gap:64px;align-items:center}
+.hm-boss-portrait{position:relative;max-width:480px}
+.hm-boss-portrait img{width:100%;border-radius:6px;filter:contrast(1.06) brightness(.99);
+  box-shadow:0 30px 60px -22px rgba(11,11,12,.45)}
+.hm-boss-portrait::before{content:"";position:absolute;inset:0;transform:translate(18px,18px);
+  border:1px solid var(--hm-gold);border-radius:6px;z-index:-1}
+.hm-boss-sig{position:absolute;bottom:-22px;left:-22px;background:var(--hm-ink);color:var(--hm-gold);
+  border-radius:50%;width:124px;height:124px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 18px 40px -14px rgba(11,11,12,.5);animation:hmFloatR 6s ease-in-out infinite}
+.hm-boss-sig span{font-family:var(--hm-script);font-size:2.2rem;transform:rotate(-10deg);line-height:1}
+.hm-boss-quote{font-family:var(--hm-serif);font-style:italic;font-weight:500;
+  font-size:clamp(1.5rem,2.4vw,2.05rem);line-height:1.3;margin:8px 0 28px;color:var(--hm-ink)}
+.hm-boss-quote b{font-style:normal;font-weight:700;background:linear-gradient(transparent 62%,rgba(245,0,121,.22) 0);padding:0 2px}
+.hm-boss-body p{font-size:1rem;color:var(--hm-ink-mute);line-height:1.78;margin-bottom:22px;max-width:38rem}
+.hm-boss-body p strong{color:var(--hm-ink);font-weight:700}
+.hm-sheet{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:34px 0;
+  border:1px solid var(--hm-line-l);border-radius:4px;overflow:hidden}
+.hm-sheet div{padding:22px 20px;border-right:1px solid var(--hm-line-l);text-align:center}
+.hm-sheet div:last-child{border-right:none}
+.hm-sheet b{font-family:var(--hm-serif);font-size:1.9rem;font-weight:700;display:block;color:var(--hm-ink);line-height:1}
+.hm-sheet small{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--hm-ink-mute);margin-top:8px;display:block}
+
+/* ============================== THE WORK (gallery + filter) ============================== */
+.hm-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.hm-filter button{padding:10px 20px;border-radius:99px;border:1px solid var(--hm-line-d);
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--hm-paper-mute);transition:.3s}
+.hm-filter button:hover{border-color:var(--hm-cream);color:var(--hm-cream)}
+.hm-filter button.hm-active{background:var(--hm-pink);border-color:var(--hm-pink);color:#fff}
+.hm-gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:14px}
+.hm-gal-item{position:relative;overflow:hidden;border-radius:4px;background:#0d0d0d;cursor:pointer;
+  border:1px solid var(--hm-line-d);transition:opacity .4s,transform .4s}
+.hm-gal-item.hm-hide{display:none}
+.hm-gal-item.hm-big{grid-column:span 2;grid-row:span 2}
+.hm-gal-item.hm-tall{grid-row:span 2}
+.hm-gal-item.hm-wide{grid-column:span 2}
+.hm-gal-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) contrast(1.02);
+  transition:filter .9s var(--hm-ease),transform .9s var(--hm-ease)}
+.hm-gal-item:hover img{filter:saturate(1.05);transform:scale(1.07)}
+.hm-gal-item::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(11,11,12,.86),transparent 58%);opacity:.7;transition:opacity .4s}
+.hm-gal-item:hover::after{opacity:.92}
+.hm-gal-cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;
+  transform:translateY(10px);opacity:0;transition:.5s var(--hm-ease)}
+.hm-gal-item:hover .hm-gal-cap{transform:none;opacity:1}
+.hm-gal-cap small{font-size:.6rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--hm-gold)}
+.hm-gal-cap h4{font-family:var(--hm-serif);font-weight:600;font-size:1.3rem;color:#fff;margin-top:4px;line-height:1}
+.hm-gal-cap a{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:.66rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hm-pink-soft)}
+
+/* ============================== WORD ON THE STREET (testimonials) ============================== */
+.hm-revs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hm-rev{background:var(--hm-ink-2);border:1px solid var(--hm-line-d);border-radius:6px;padding:32px 30px;
+  position:relative;transition:transform .4s var(--hm-ease),border-color .4s}
+.hm-rev:hover{transform:translateY(-6px);border-color:rgba(200,162,76,.4)}
+.hm-rev-quo{font-family:var(--hm-serif);font-style:italic;font-size:3.4rem;line-height:.6;
+  color:var(--hm-pink);height:24px}
+.hm-rev-stars{color:var(--hm-gold);letter-spacing:.14em;font-size:.86rem;margin:14px 0 16px}
+.hm-rev p{font-size:1rem;color:var(--hm-cream);line-height:1.62;margin-bottom:24px}
+.hm-rev-by{display:flex;align-items:center;gap:13px;padding-top:18px;border-top:1px solid var(--hm-line-d)}
+.hm-rev-av{width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--hm-pink),var(--hm-gold));display:flex;align-items:center;
+  justify-content:center;font-family:var(--hm-serif);font-weight:700;color:#fff;font-size:1.05rem}
+.hm-rev-by b{display:block;font-size:.92rem;color:var(--hm-cream);font-weight:700}
+.hm-rev-by small{font-size:.7rem;color:var(--hm-paper-mute);letter-spacing:.04em}
+
+/* ============================== BOOK CTA (gold luxe) ============================== */
+.hm-book{position:relative;overflow:hidden;color:#1a1408;text-align:center}
+.hm-book-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--hm-gold-2) 0%,var(--hm-gold) 52%,#9b7a2e 100%)}
+.hm-book-bg::after{content:"";position:absolute;inset:0;opacity:.06;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect width='6' height='6' fill='%23000'/%3E%3C/svg%3E")}
+.hm-book-inner{position:relative;z-index:2;max-width:780px;margin:0 auto}
+.hm-book .hm-kicker{color:#5a3f0a}
+.hm-book h2{color:#1a1408;margin:14px 0 18px}
+.hm-book h2 .hm-it{color:#1a1408}
+.hm-book p{font-size:1.1rem;color:rgba(26,20,8,.82);font-weight:500;max-width:40rem;margin:0 auto 32px}
+.hm-book-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hm-book-note{margin-top:22px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(26,20,8,.7);font-weight:700}
+
+/* ============================== JOIN THE FAMILY (newsletter) ============================== */
+.hm-fam{background:var(--hm-ink);position:relative;overflow:hidden;padding:108px 0}
+.hm-fam-glow{position:absolute;width:560px;height:560px;top:0;left:50%;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(245,0,121,.16),transparent 66%);filter:blur(30px);z-index:0;pointer-events:none}
+.hm-fam-card{position:relative;z-index:2;max-width:1040px;margin:0 auto;
+  border:1px solid var(--hm-line-d);border-radius:8px;background:var(--hm-ink-2);
+  padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hm-fam-l h2{margin:12px 0 16px}
+.hm-fam-l p{font-size:1.04rem;color:var(--hm-paper-mute);line-height:1.7;margin-bottom:24px}
+.hm-fam-perk{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:4px;
+  background:rgba(200,162,76,.1);border:1px solid rgba(200,162,76,.3);color:var(--hm-gold-2);
+  font-size:.86rem;font-weight:600}
+.hm-fam-form{display:flex;flex-direction:column;gap:16px}
+.hm-fam-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hm-input{width:100%;background:var(--hm-ink);border:1px solid var(--hm-line-d);border-radius:4px;
+  padding:16px 18px;color:var(--hm-cream);font-family:inherit;font-size:.95rem;transition:.3s}
+.hm-input::placeholder{color:rgba(244,238,230,.32)}
+.hm-input:focus{outline:none;border-color:var(--hm-pink);background:var(--hm-ink-3)}
+.hm-pills-l{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--hm-paper-mute);
+  font-weight:700;margin-bottom:4px}
+.hm-pills{display:flex;flex-wrap:wrap;gap:9px}
+.hm-pill{position:relative;cursor:pointer}
+.hm-pill input{position:absolute;opacity:0;pointer-events:none}
+.hm-pill span{display:inline-block;padding:9px 17px;border-radius:99px;border:1px solid var(--hm-line-d);
+  color:var(--hm-paper-mute);font-size:.8rem;font-weight:600;transition:.3s}
+.hm-pill:hover span{border-color:rgba(244,238,230,.4)}
+.hm-pill input:checked + span{background:var(--hm-pink);border-color:var(--hm-pink);color:#fff}
+.hm-fam-submit{background:linear-gradient(120deg,var(--hm-gold-2),var(--hm-gold));color:#1a1408;
+  font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.76rem;padding:17px;
+  border-radius:4px;margin-top:6px;transition:.3s}
+.hm-fam-submit:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(200,162,76,.6)}
+.hm-fam-fine{font-size:.7rem;color:rgba(244,238,230,.36);text-align:center;margin-top:2px}
+
+/* ============================== FOOTER ============================== */
+.hm-foot{background:var(--hm-ink);border-top:1px solid var(--hm-line-d);padding:84px 0 30px}
+.hm-foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.2fr;gap:46px;margin-bottom:64px}
+.hm-foot-brand img{height:60px;margin-bottom:22px;opacity:.95}
+.hm-foot-brand p{font-size:.92rem;color:var(--hm-paper-mute);line-height:1.7;margin-bottom:26px;max-width:30ch}
+.hm-foot-soc{display:flex;gap:11px}
+.hm-foot-soc a{width:40px;height:40px;border-radius:50%;border:1px solid var(--hm-line-d);
+  display:flex;align-items:center;justify-content:center;color:var(--hm-paper-mute);transition:.4s}
+.hm-foot-soc a:hover{background:var(--hm-pink);border-color:var(--hm-pink);color:#fff;transform:translateY(-3px)}
+.hm-foot-soc svg{width:17px;height:17px}
+.hm-foot h5{font-family:var(--hm-sans);font-weight:700;font-size:.68rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--hm-cream);margin-bottom:20px}
+.hm-foot ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.hm-foot ul a{font-size:.92rem;color:var(--hm-paper-mute);transition:.3s}
+.hm-foot ul a:hover{color:var(--hm-gold)}
+.hm-foot-addr{font-style:normal;font-size:.92rem;color:var(--hm-paper-mute);line-height:1.7;margin-bottom:18px}
+.hm-foot-addr b{color:var(--hm-cream);font-weight:600}
+.hm-foot-hrs-l{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--hm-gold);
+  margin-bottom:6px;font-weight:700}
+.hm-foot-hrs{font-size:.9rem;color:var(--hm-paper-mute)}
+.hm-foot-bot{padding-top:28px;border-top:1px solid var(--hm-line-d);display:flex;
+  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+  font-size:.78rem;color:var(--hm-paper-mute)}
+.hm-foot-bot-links{display:flex;gap:22px}
+.hm-foot-bot-links a:hover{color:var(--hm-cream)}
+
+/* ============================== MOBILE STICKY ============================== */
+.hm-sticky{display:none;position:fixed;left:14px;right:14px;bottom:14px;z-index:55;
+  background:rgba(20,20,22,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--hm-line-d);border-radius:14px;padding:9px;
+  grid-template-columns:repeat(4,1fr);gap:6px;box-shadow:0 20px 40px -16px rgba(0,0,0,.7)}
+.hm-sticky a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;
+  color:var(--hm-paper-mute);font-size:.56rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;transition:color .3s;border-radius:9px}
+.hm-sticky a svg{width:20px;height:20px}
+.hm-sticky a:hover,.hm-sticky a.hm-prime{color:var(--hm-cream)}
+.hm-sticky a.hm-prime{background:var(--hm-pink);color:#fff}
+
+/* ============================== ANIMATIONS ============================== */
+@keyframes hmRise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes hmPulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes hmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes hmFloatR{0%,100%{transform:translateY(0)}50%{transform:translateY(11px)}}
+@keyframes hmSpinFloat{0%,100%{transform:rotate(8deg) translateY(0)}50%{transform:rotate(8deg) translateY(-9px)}}
+@keyframes hmScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.hm-reveal{opacity:0;animation:hmRise 1s var(--hm-ease) both}
+.hm-d1{animation-delay:.1s}.hm-d2{animation-delay:.25s}.hm-d3{animation-delay:.4s}.hm-d4{animation-delay:.55s}
+
+/* ============================== RESPONSIVE ============================== */
+@media(max-width:1080px){
+  .hm-hero-grid,.hm-boss-grid,.hm-fam-card{grid-template-columns:1fr;gap:48px}
+  .hm-hero-l{padding-bottom:40px}
+  .hm-hero-r{max-width:440px;margin:0 auto;width:100%}
+  .hm-boss-portrait{margin:0 auto}
+  .hm-lineup{grid-template-columns:1fr 1fr}
+  .hm-lineup .hm-svc:nth-child(3n){border-right:1px solid var(--hm-line-l)}
+  .hm-lineup .hm-svc:nth-child(2n){border-right:none}
+  .hm-lineup .hm-svc:nth-last-child(-n+3){border-bottom:1px solid var(--hm-line-l)}
+  .hm-lineup .hm-svc:nth-last-child(-n+2){border-bottom:none}
+  .hm-shop{grid-template-columns:1fr 1fr}
+  .hm-revs{grid-template-columns:1fr}
+  .hm-foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media(max-width:820px){
+  .hm-nav-links{display:none}
+  .hm-nav-actions .hm-icon,.hm-nav-actions .hm-nav-book{display:none}
+  .hm-nav-actions{gap:0}
+  .hm-burger{display:flex}
+  .hm-nav-inner{grid-template-columns:auto 1fr;height:68px}
+  .hm-nav.hm-stuck .hm-nav-inner{height:60px}
+  .hm-sec{padding:74px 0}
+  .hm-sec-head{margin-bottom:42px}
+  .hm-lineup{grid-template-columns:1fr}
+  .hm-lineup .hm-svc{border-right:none!important;border-bottom:1px solid var(--hm-line-l)!important}
+  .hm-lineup .hm-svc:last-child{border-bottom:none!important}
+  .hm-svc p{min-height:0}
+  .hm-gal{grid-template-columns:1fr 1fr;grid-auto-rows:170px;gap:10px}
+  .hm-gal-item.hm-big,.hm-gal-item.hm-wide{grid-column:span 2}
+  .hm-gal-item.hm-big{grid-row:span 1}
+  .hm-gal-item.hm-tall{grid-row:span 1}
+  .hm-sheet b{font-size:1.5rem}
+  .hm-fam-card{padding:34px}
+  .hm-fam-row{grid-template-columns:1fr}
+  .hm-foot-grid{grid-template-columns:1fr;gap:30px}
+  .hm-foot{padding-bottom:104px}
+  .hm-sticky{display:grid}
+  .hm-cover-tape{display:none}
+}
+@media(max-width:480px){
+  .hm-wrap{padding:0 20px}
+  .hm-top-inner{padding:8px 20px}
+  .hm-nav-inner{padding:0 20px}
+  .hm-shop{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .hm-scope *,.hm-scope *::before,.hm-scope *::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body>
+<div class="hm-scope" id="hmTop">
+
+  <!-- ============================== TOP MASTHEAD ============================== -->
+  <div class="hm-top">
+    <div class="hm-top-inner">
+      <div class="hm-top-side">Est. Charlotte, NC · <b>The House of Luxury Hair</b></div>
+      <div class="hm-top-mid">Students Save 10% <i>✦</i> Subscribe &amp; Save 15% On Bundles <i>✦</i> Free Charlotte Pickup</div>
+      <div class="hm-top-side">Mon–Fri · 10–5</div>
+    </div>
+  </div>
+
+  <!-- ============================== NAV ============================== -->
+  <header class="hm-nav" id="hmNav">
+    <div class="hm-nav-inner">
+      <a href="#hmTop" class="hm-logo" aria-label="Hair Mafia — Home">
+        <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a235a763c3faf82cae2f2d5.png" alt="Hair Mafia">
+      </a>
+      <nav class="hm-nav-links" aria-label="Primary">
+        <a href="#hmLineup">Services</a>
+        <a href="#hmShop">Shop</a>
+        <a href="#hmWork">Lookbook</a>
+        <a href="#hmBoss">The Boss</a>
+        <a href="#hmRevs">Reviews</a>
+      </nav>
+      <div class="hm-nav-actions">
+        <button class="hm-icon" aria-label="Search">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+        <button class="hm-icon" aria-label="Cart">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="hm-cart-badge">0</span>
+        </button>
+        <a href="#hmBook" class="hm-btn hm-btn-pink hm-nav-book">Book Now</a>
+        <button class="hm-burger" id="hmBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="hm-mobile" id="hmMobile" aria-hidden="true">
+    <button class="hm-mobile-close" id="hmClose" aria-label="Close menu">&times;</button>
+    <nav aria-label="Mobile">
+      <a href="#hmLineup"><small>01</small> Services</a>
+      <a href="#hmShop"><small>02</small> Shop the Drop</a>
+      <a href="#hmWork"><small>03</small> Lookbook</a>
+      <a href="#hmBoss"><small>04</small> The Boss</a>
+      <a href="#hmRevs"><small>05</small> Reviews</a>
+      <a href="#hmFam"><small>06</small> Join the Family</a>
+    </nav>
+    <a href="#hmBook" class="hm-btn hm-btn-pink">Book Your Seat</a>
+  </div>
+
+  <!-- ============================== HERO / COVER ============================== -->
+  <section class="hm-hero">
+    <div class="hm-hero-glow"></div>
+    <div class="hm-hero-glow hm-g2"></div>
+    <div class="hm-wrap hm-hero-grid">
+      <div class="hm-hero-l">
+        <div class="hm-cover-meta hm-reveal hm-d1">
+          <span>The Mafia Issue</span>
+          <span><b>No. 01</b></span>
+          <span class="hm-star">★★★★★</span>
+          <span><b>500+</b> Five-Star</span>
+        </div>
+        <h1 class="hm-reveal hm-d2">
+          Run The
+          <span class="hm-script">Hair Mafia</span>
+          <span class="hm-out">City.</span>
+        </h1>
+        <p class="hm-hero-sub hm-reveal hm-d3">
+          Charlotte's luxury hair house. Premium bundles, flawless installs, locs,
+          silk press and natural-hair care — engineered by a trichologist, delivered
+          with boss energy. Walk in. Run the room.
+        </p>
+        <div class="hm-hero-cta hm-reveal hm-d3">
+          <a href="#hmBook" class="hm-btn hm-btn-pink">Book Your Seat
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="#hmShop" class="hm-btn hm-btn-ghost-d">Shop the Drop</a>
+        </div>
+        <div class="hm-hero-trust hm-reveal hm-d4">
+          <span class="hm-faces"><i>T</i><i>K</i><i>M</i><i>+</i></span>
+          <span>Trusted by <b>1,200+ clients</b> across the Queen City</span>
+        </div>
+      </div>
+
+      <div class="hm-hero-r hm-reveal hm-d2">
+        <span class="hm-cover-tape">Hair Mafia · Vol. 01</span>
+        <div class="hm-cover-frame">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a261e70fc95b24549b5d8b6.png" alt="Hair Mafia luxury extensions model">
+          <div class="hm-cover-sticker">
+            <b>15%</b><span>Off 1st Order</span>
+          </div>
+          <div class="hm-cover-line">
+            <h4>The Crown Issue</h4>
+            <p>Extensions · Locs · Silk Press</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="hm-ticker" aria-hidden="true">
+      <div class="hm-ticker-tag"><i>●</i> Breaking</div>
+      <div class="hm-ticker-track">
+        <span><b>New Bundles Dropped</b> <em>—</em> Raw Indian &amp; Burmese curly in stock</span>
+        <span>Walk-Ins By Appointment <em>—</em> Same-week openings</span>
+        <span><b>Trichologist-Led Care</b> <em>—</em> Healthy hair, every install</span>
+        <span>Subscribe &amp; Save 15% <em>—</em> On eligible extensions</span>
+        <span><b>Now Booking</b> <em>—</em> Frontals · Sew-Ins · Loc Retwists</span>
+        <span>New Bundles Dropped <em>—</em> Raw Indian &amp; Burmese curly in stock</span>
+        <span>Walk-Ins By Appointment <em>—</em> Same-week openings</span>
+        <span><b>Trichologist-Led Care</b> <em>—</em> Healthy hair, every install</span>
+        <span>Subscribe &amp; Save 15% <em>—</em> On eligible extensions</span>
+        <span><b>Now Booking</b> <em>—</em> Frontals · Sew-Ins · Loc Retwists</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== THE LINEUP (SERVICES) ============================== -->
+  <section class="hm-sec hm-on-cream" id="hmLineup">
+    <div class="hm-wrap">
+      <div class="hm-sec-head">
+        <div class="hm-sec-head-l">
+          <span class="hm-chapter">Chapter 01 — The Lineup</span>
+          <span class="hm-kicker">Salon Services</span>
+          <h2 class="hm-h2" style="margin-top:14px">Pick Your <span class="hm-it">Power Move.</span></h2>
+        </div>
+        <a href="#hmBook" class="hm-link" style="color:var(--hm-pink-deep)">Full Service Menu</a>
+      </div>
+
+      <div class="hm-lineup">
+        <article class="hm-svc">
+          <span class="hm-svc-no">01.</span>
+          <h4>Extension Installs</h4>
+          <p>Sew-ins, frontals, closures &amp; tape-ins blended so clean they disappear. Premium bundles available in-house.</p>
+          <div class="hm-svc-foot">
+            <div class="hm-svc-price">Starting<b>$150</b></div>
+            <a href="#hmBook" class="hm-svc-book">Book<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+        <article class="hm-svc">
+          <span class="hm-svc-no">02.</span>
+          <h4>Silk Press &amp; Styling</h4>
+          <p>Bounce, shine and movement without the heat damage. A press that lasts and a style that turns heads.</p>
+          <div class="hm-svc-foot">
+            <div class="hm-svc-price">Starting<b>$85</b></div>
+            <a href="#hmBook" class="hm-svc-book">Book<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+        <article class="hm-svc">
+          <span class="hm-svc-no">03.</span>
+          <h4>Locs &amp; Sisterlocks</h4>
+          <p>Starter locs, retwists, interlocking &amp; sisterlock maintenance. Healthy roots, defined parts, neat all month.</p>
+          <div class="hm-svc-foot">
+            <div class="hm-svc-price">Starting<b>$120</b></div>
+            <a href="#hmBook" class="hm-svc-book">Book<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+        <article class="hm-svc">
+          <span class="hm-svc-no">04.</span>
+          <h4>Color &amp; Bundles</h4>
+          <p>Custom color, highlights &amp; pre-colored bundle sets. Rich, dimensional tone that photographs like a magazine.</p>
+          <div class="hm-svc-foot">
+            <div class="hm-svc-price">Starting<b>$140</b></div>
+            <a href="#hmBook" class="hm-svc-book">Book<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+        <article class="hm-svc">
+          <span class="hm-svc-no">05.</span>
+          <h4>Scalp &amp; Hair Treatments</h4>
+          <p>Trichologist-led scalp therapy, deep conditioning &amp; growth treatments to keep your crown thriving.</p>
+          <div class="hm-svc-foot">
+            <div class="hm-svc-price">Starting<b>$70</b></div>
+            <a href="#hmBook" class="hm-svc-book">Book<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+        <article class="hm-svc">
+          <span class="hm-svc-no">06.</span>
+          <h4>The Consultation</h4>
+          <p>New here? Start with a 1-on-1. We map your goals, hair health &amp; the exact look — in person or virtual.</p>
+          <div class="hm-svc-foot">
+            <div class="hm-svc-price">Free<b>$0</b></div>
+            <a href="#hmBook" class="hm-svc-book">Book<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SHOP THE DROP ============================== -->
+  <section class="hm-sec hm-on-ink-2" id="hmShop">
+    <div class="hm-wrap">
+      <div class="hm-sec-head">
+        <div class="hm-sec-head-l">
+          <span class="hm-chapter">Chapter 02 — The Collection</span>
+          <span class="hm-kicker">Shop the Drop</span>
+          <h2 class="hm-h2" style="margin-top:14px">Bundles Worth <span class="hm-script">Bragging</span> About.</h2>
+        </div>
+        <a href="#" class="hm-link">Enter the Store</a>
+      </div>
+
+      <div class="hm-shop">
+        <a href="#" class="hm-shop-card">
+          <img src="https://images.unsplash.com/photo-1620331311520-24c4bd204d67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium hair extensions">
+          <div class="hm-shop-body">
+            <small>Best Seller</small>
+            <h4>Premium Extensions</h4>
+            <span class="hm-shop-go">Shop Now <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="#" class="hm-shop-card">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wigs and closures">
+          <div class="hm-shop-body">
+            <small>Ready to Wear</small>
+            <h4>Wigs &amp; Closures</h4>
+            <span class="hm-shop-go">Shop Now <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="#" class="hm-shop-card">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hair care essentials">
+          <div class="hm-shop-body">
+            <small>Keep It Healthy</small>
+            <h4>Hair Care Essentials</h4>
+            <span class="hm-shop-go">Shop Now <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="#" class="hm-shop-card">
+          <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Styling accessories">
+          <div class="hm-shop-body">
+            <small>Finishing Touch</small>
+            <h4>Styling Accessories</h4>
+            <span class="hm-shop-go">Shop Now <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== THE BOSS (FOUNDER) ============================== -->
+  <section class="hm-sec hm-on-cream hm-boss" id="hmBoss">
+    <div class="hm-boss-mark">Boss</div>
+    <div class="hm-wrap hm-boss-grid">
+      <div class="hm-boss-portrait">
+        <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a236efbfc95b2454991793c.png" alt="Trophy Santiaga, founder of Hair Mafia">
+        <div class="hm-boss-sig"><span>Trophy</span></div>
+      </div>
+      <div class="hm-boss-body">
+        <span class="hm-chapter">Chapter 03 — The Boss</span>
+        <div style="height:14px"></div>
+        <span class="hm-kicker">Meet Trophy Santiaga</span>
+        <p class="hm-boss-quote">“I don't just style hair — I protect your <b>crown</b>. Beauty is the look. Science is how it lasts.”</p>
+        <p>
+          <strong>Trophy Santiaga</strong> built Hair Mafia on a rare combination: the eye of a master
+          stylist and the training of a scientist. Every install, press and loc service is built around
+          the long-term health of your hair — so you leave looking expensive and stay healthy under it all.
+        </p>
+        <div class="hm-sheet">
+          <div><b>Bio</b><small>Biologist</small></div>
+          <div><b>Tri</b><small>Trichologist</small></div>
+          <div><b>10+</b><small>Years Mastery</small></div>
+        </div>
+        <a href="#hmBook" class="hm-btn hm-btn-ghost-l">Book a Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== THE WORK (LOOKBOOK) ============================== -->
+  <section class="hm-sec hm-on-ink-2" id="hmWork">
+    <div class="hm-wrap">
+      <div class="hm-sec-head">
+        <div class="hm-sec-head-l">
+          <span class="hm-chapter">Chapter 04 — The Portfolio</span>
+          <span class="hm-kicker">The Lookbook</span>
+          <h2 class="hm-h2" style="margin-top:14px">The Mafia <span class="hm-it">Effect.</span></h2>
+        </div>
+        <a href="#" class="hm-link">View Full Gallery</a>
+      </div>
+
+      <div class="hm-filter" id="hmFilter" role="tablist" aria-label="Filter lookbook">
+        <button class="hm-active" data-filter="all">All Work</button>
+        <button data-filter="extensions">Extensions</button>
+        <button data-filter="locs">Locs</button>
+        <button data-filter="color">Color</button>
+        <button data-filter="natural">Natural</button>
+      </div>
+
+      <div class="hm-gal" id="hmGal">
+        <figure class="hm-gal-item hm-big" data-cat="extensions">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a2382f66a06f03d447c0ed5.webp" alt="Traditional sew-in install">
+          <figcaption class="hm-gal-cap"><small>Extensions</small><h4>Traditional Sew-In</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+        <figure class="hm-gal-item" data-cat="natural">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a236e6a49e55f85197ec1f8.png" alt="Silk press result">
+          <figcaption class="hm-gal-cap"><small>Natural</small><h4>Silk Press</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+        <figure class="hm-gal-item hm-tall" data-cat="locs">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a236e5349e55f85197ec118.png" alt="Sisterlocks">
+          <figcaption class="hm-gal-cap"><small>Locs</small><h4>Sisterlocks</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+        <figure class="hm-gal-item" data-cat="extensions">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a2382cf49e55f85197f6cc7.webp" alt="Frontal install">
+          <figcaption class="hm-gal-cap"><small>Extensions</small><h4>Frontal Install</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+        <figure class="hm-gal-item" data-cat="locs">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a238195fc95b24549920914.webp" alt="Loc retwist">
+          <figcaption class="hm-gal-cap"><small>Locs</small><h4>Loc Retwist</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+        <figure class="hm-gal-item hm-wide" data-cat="color">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a23794b49e55f85197f1227.webp" alt="Color and bundles">
+          <figcaption class="hm-gal-cap"><small>Color</small><h4>Color &amp; Bundles</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+        <figure class="hm-gal-item" data-cat="natural">
+          <img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a23790ef607d4002b9bfa7c.webp" alt="Natural curls">
+          <figcaption class="hm-gal-cap"><small>Natural</small><h4>Natural Curls</h4><a href="#hmBook">Book this look →</a></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== WORD ON THE STREET ============================== -->
+  <section class="hm-sec" id="hmRevs">
+    <div class="hm-wrap">
+      <div class="hm-sec-head">
+        <div class="hm-sec-head-l">
+          <span class="hm-chapter">Chapter 05 — The Family Talks</span>
+          <span class="hm-kicker">Word on the Street</span>
+          <h2 class="hm-h2" style="margin-top:14px">They Said It, <span class="hm-it">Not Us.</span></h2>
+        </div>
+      </div>
+
+      <div class="hm-revs">
+        <article class="hm-rev">
+          <div class="hm-rev-quo">”</div>
+          <div class="hm-rev-stars">★★★★★</div>
+          <p>Walked in stressed, walked out a whole boss. My frontal is undetectable and three weeks later it still looks fresh. Trophy is the truth.</p>
+          <div class="hm-rev-by"><span class="hm-rev-av">K</span><div><b>Kiara M.</b><small>Frontal Install · Charlotte</small></div></div>
+        </article>
+        <article class="hm-rev">
+          <div class="hm-rev-quo">”</div>
+          <div class="hm-rev-stars">★★★★★</div>
+          <p>The only place that cared about my edges and my scalp, not just the style. My hair is actually healthier since I started coming here.</p>
+          <div class="hm-rev-by"><span class="hm-rev-av">D</span><div><b>Destiny R.</b><small>Scalp Treatment · Loc Retwist</small></div></div>
+        </article>
+        <article class="hm-rev">
+          <div class="hm-rev-quo">”</div>
+          <div class="hm-rev-stars">★★★★★</div>
+          <p>Luxury from the chair to the bundles. The silk press had body for days and the consultation made me feel like the only client in the city.</p>
+          <div class="hm-rev-by"><span class="hm-rev-av">T</span><div><b>Tasha B.</b><small>Silk Press · Color</small></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== BOOK CTA ============================== -->
+  <section class="hm-sec hm-book" id="hmBook">
+    <div class="hm-book-bg"></div>
+    <div class="hm-wrap hm-book-inner">
+      <span class="hm-kicker hm-center">Reserve Your Seat</span>
+      <h2 class="hm-h2">Not Sure Where to <span class="hm-it">Begin?</span></h2>
+      <p>Start with a free consultation. We'll talk goals, hair health, budget and the exact look —
+        then build the plan. In-person in Charlotte or virtual from anywhere.</p>
+      <div class="hm-book-cta">
+        <a href="#" class="hm-btn hm-btn-ink">Book In-Person
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#" class="hm-btn hm-btn-ghost-l">Book Virtual</a>
+      </div>
+      <p class="hm-book-note">✦ Same-week openings available ✦</p>
+
+      <!-- ============================================================
+           GHL CALENDAR EMBED SLOT (uncomment + add your URL)
+           ============================================================ -->
+      <!--
+      <div style="margin-top:44px;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,.15)">
+        <iframe src="YOUR-GHL-CALENDAR-URL" style="width:100%;border:none;min-height:720px;" scrolling="no" id="msgsndr-calendar"></iframe>
+      </div>
+      <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================== JOIN THE FAMILY ============================== -->
+  <section class="hm-fam" id="hmFam">
+    <div class="hm-fam-glow"></div>
+    <div class="hm-wrap">
+      <div class="hm-fam-card">
+        <div class="hm-fam-l">
+          <span class="hm-kicker">Insider Access</span>
+          <h2 class="hm-h2" style="font-size:clamp(2.2rem,4vw,3.2rem)">Join the <span class="hm-script">Family.</span></h2>
+          <p>Be first on bundle drops, appointment openings, expert hair-care tips and members-only offers. No spam — just good hair.</p>
+          <div class="hm-fam-perk">🎁 15% off your first hair-extension order.</div>
+        </div>
+        <form class="hm-fam-form" onsubmit="return false">
+          <div class="hm-fam-row">
+            <input type="text" class="hm-input" placeholder="First Name" aria-label="First name">
+            <input type="tel" class="hm-input" placeholder="Mobile Number" aria-label="Mobile number">
+          </div>
+          <input type="email" class="hm-input" placeholder="Email Address *" aria-label="Email address" required>
+          <div>
+            <p class="hm-pills-l">I'm Here For</p>
+            <div class="hm-pills">
+              <label class="hm-pill"><input type="radio" name="interest" checked><span>Extensions</span></label>
+              <label class="hm-pill"><input type="radio" name="interest"><span>Locs</span></label>
+              <label class="hm-pill"><input type="radio" name="interest"><span>Color</span></label>
+              <label class="hm-pill"><input type="radio" name="interest"><span>Hair Care</span></label>
+            </div>
+          </div>
+          <button class="hm-fam-submit">Unlock 15% Access</button>
+          <p class="hm-fam-fine">By joining you agree to receive marketing texts &amp; emails. Unsubscribe anytime.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="hm-foot">
+    <div class="hm-wrap">
+      <div class="hm-foot-grid">
+        <div class="hm-foot-brand">
+          <a href="#hmTop"><img src="https://assets.cdn.filesafe.space/Cj5GFrsjujngIW6i6UC6/media/6a235a763c3faf82cae2f2d5.png" alt="Hair Mafia"></a>
+          <p>The House of Luxury Hair. Premium bundles, master installs and trichologist-led care — because every strand deserves the boss treatment.</p>
+          <div class="hm-foot-soc">
+            <a href="#" aria-label="Instagram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.26.07 1.64.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.22-1.66 4.77-4.92 4.92-1.26.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.26-.07-1.64-.07-4.85 0-3.2.01-3.58.07-4.85.15-3.23 1.66-4.77 4.92-4.92 1.26-.06 1.64-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm6.41-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
+            <a href="#" aria-label="TikTok"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M23 7.5a3 3 0 00-2-2C19.2 5 12 5 12 5s-7.2 0-9 .5a3 3 0 00-2 2C.5 9.3.5 12 .5 12s0 2.7.5 4.5a3 3 0 002 2c1.8.5 9 .5 9 .5s7.2 0 9-.5a3 3 0 002-2c.5-1.8.5-4.5.5-4.5s0-2.7-.5-4.5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Shop</h5>
+          <ul>
+            <li><a href="#hmShop">Extensions</a></li>
+            <li><a href="#hmShop">Wigs &amp; Lace</a></li>
+            <li><a href="#hmShop">Hair Care</a></li>
+            <li><a href="#hmShop">Accessories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#hmLineup">Consultations</a></li>
+            <li><a href="#hmLineup">Installations</a></li>
+            <li><a href="#hmLineup">Loc Services</a></li>
+            <li><a href="#hmLineup">Treatments</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Visit the House</h5>
+          <address class="hm-foot-addr">
+            <b>Hair Mafia</b><br>333 Beatties Ford Rd<br>Charlotte, NC 28216
+          </address>
+          <p class="hm-foot-hrs-l">Hours</p>
+          <p class="hm-foot-hrs">Mon–Fri · 10am – 5pm<br>Sat · By Appointment</p>
+        </div>
+      </div>
+      <div class="hm-foot-bot">
+        <p>© <span id="hmYear"></span> Hair Mafia. All rights reserved.</p>
+        <div class="hm-foot-bot-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================== MOBILE STICKY ============================== -->
+  <nav class="hm-sticky" aria-label="Quick actions">
+    <a href="#hmTop">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Home
+    </a>
+    <a href="#hmShop">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+      Shop
+    </a>
+    <a href="#hmBook" class="hm-prime">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Book
+    </a>
+    <a href="#hmLineup">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h10"/></svg>
+      Services
+    </a>
+  </nav>
+
+</div>
+
+<script>
+(function(){
+  var scope = document.querySelector('.hm-scope');
+
+  /* Nav shrink on scroll */
+  var nav = document.getElementById('hmNav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('hm-stuck', window.scrollY > 40);
+  }, {passive:true});
+
+  /* Mobile menu */
+  var burger = document.getElementById('hmBurger');
+  var mobile = document.getElementById('hmMobile');
+  var close  = document.getElementById('hmClose');
+  function setMenu(open){
+    mobile.classList.toggle('hm-open', open);
+    mobile.setAttribute('aria-hidden', open ? 'false' : 'true');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){ setMenu(!mobile.classList.contains('hm-open')); });
+  close.addEventListener('click', function(){ setMenu(false); });
+  mobile.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+
+  /* Smooth in-page scroll (offset for sticky nav) */
+  scope.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length > 1){
+        var t = document.querySelector(id);
+        if(t){
+          e.preventDefault();
+          var y = t.getBoundingClientRect().top + window.pageYOffset - 78;
+          window.scrollTo({top:y, behavior:'smooth'});
+        }
+      }
+    });
+  });
+
+  /* Lookbook filter */
+  var filter = document.getElementById('hmFilter');
+  var items  = document.querySelectorAll('#hmGal .hm-gal-item');
+  if(filter){
+    filter.addEventListener('click', function(e){
+      var btn = e.target.closest('button');
+      if(!btn) return;
+      filter.querySelectorAll('button').forEach(function(b){ b.classList.remove('hm-active'); });
+      btn.classList.add('hm-active');
+      var cat = btn.getAttribute('data-filter');
+      items.forEach(function(it){
+        var show = cat === 'all' || it.getAttribute('data-cat') === cat;
+        it.classList.toggle('hm-hide', !show);
+      });
+    });
+  }
+
+  /* Year */
+  var y = document.getElementById('hmYear');
+  if(y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
